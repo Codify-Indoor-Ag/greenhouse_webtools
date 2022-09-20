@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html {
+            font-family: Helvetica;
+            display: inline-block;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        body {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #444444;
+            margin: 50px auto 30px;
+        }
+
+        h3 {
+            color: #444444;
+            margin-bottom: 50px;
+        }
+
+        .yasmeenbtn {
+            display: block;
+            width: 80px;
+            background-color: #1abc9c;
+            border: none;
+            color: white;
+            padding: 13px 30px;
+            text-decoration: none;
+            font-size: 25px;
+            margin: 0px auto 35px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button-on {
+            background-color: #1abc9c;
+        }
+
+        .button-on:active {
+            background-color: #16a085;
+        }
+
+        .button-off {
+            background-color: #34495e;
+        }
+
+        .button-off:active {
+            background-color: #2c3e50;
+        }
+
+        p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .yasmeentable td {
+            min-width: 150px;
+            padding-top: 20px;
+        }
+
+        .inputhertz {
+            width: 30px;
+        }
+
+        .resize {
+            width:200px; /* you can use % */
+            height: auto;
+        }
+
+    </style>
+</head>
+<!--<script-->
+<!--  type="module"-->
+<!--  src="https://www.improv-wifi.com/sdk-js/launch-button.js"-->
+<!--&gt;</script>-->
+
+<!--<improv-wifi-launch-button></improv-wifi-launch-button>-->
+
+<body>
+    <h1>Greenhouse Sensor Web Tools</h1>
+    <h3>Select wanted sensors for your project</h3>
+<table>
+    <thead>
+    <tr>
+        <td>Influx Server: XXX</td>
+        <td>Influx Token: XXX</td>
+        <td>
+            <form action="/reset">
+                <input type="submit" value="RESET"/>
+            </form>
+        </td>
+    </tr>
+    </thead>
+</table>
+<hr>
+
+<form action="/save">
+
+    <table class="yasmeentable">
+        <tbody>
+        <tr>
+            <td><b>Sensor</b></td>
+            <td><b>On/Off</b></td>
+            <td><b>Frequency</b></td>
+            <td><b>Diagram</b></td>
+        </tr>
+
+        <tr>
+            <td><b>Temperature Humidity Sensor</b><br>BME280</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" '
+                    if (sensor_1_turnedon) {
+                     ptr += 'checked'
+                    }
+                    '>
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td>
+                <input type="text" value="5" class="input hertz"> Hz
+            </td>
+            <td>
+                <img src="wiring_diagram_example.jpeg" class="resize"/>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td><b>Lux Sensor</b><br>VEML7700</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" '
+                    if (sensor_1_turnedon) {
+                    ptr += 'checked'
+                    }
+                    '>
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td>
+                <input type="text" value="5" class="input hertz"> Hz
+            </td>
+            <td>
+                <img src="wiring_diagram_example.jpeg" class="resize"/>
+            </td>
+        </tr>
+        <tr>
+            <td><b>CO2 Sensor</b><br>CSS811</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" '
+                    if (sensor_1_turnedon) {
+                    ptr += 'checked'
+                    }
+                    '>
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td>
+                <input type="text" value="5" class="input hertz"> Hz
+            </td>
+            <td>
+                <img src="wiring_diagram_example.jpeg" class="resize"/>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Soil Sensor</b><br>Adafruit XXX</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" '
+                    if (sensor_1_turnedon) {
+                    ptr += 'checked'
+                    }
+                    '>
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td>
+                <input type="text" value="5" class="input hertz"> Hz
+            </td>
+            <td>
+                <img src="wiring_diagram_example.jpeg" class="resize"/>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Camera Sensor</b><br>ESPcam</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" '
+                    if (sensor_1_turnedon) {
+                    ptr += 'checked'
+                    }
+                    '>
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td>
+                <input type="text" value="5" class="input hertz"> Hz
+            </td>
+            <td>
+                <img src="wiring_diagram_example.jpeg" class="resize"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <input type="submit" value="SAVE"/>
+</form>
+
+
+
+
+    <div id="main" style="display: none;">
+
+        <br>
+        <script
+            type="module"
+            src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
+        </script>
+        <esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button>
+        <br>
+        <span>NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor)</span>
+    </div>
+    <div id="notSupported" style="display: none;">
+        Your browser does not support the Web Serial API. Try Chrome, Opera or Edge
+    </div>
+
+
+    <script>
+        if(navigator.serial){
+            document.getElementById("notSupported").style.display = 'none';
+            document.getElementById("main").style.display = 'block';
+        } else {
+            document.getElementById("notSupported").style.display = 'block';
+            document.getElementById("main").style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
