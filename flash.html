@@ -155,8 +155,20 @@
 <table>
     <thead>
     <tr>
-        <td>Influx Server: XXX</td>
-        <td>Influx Token: XXX</td>
+        <td>Influx Server: plnt-station.local </td>
+        <td>Influx Organization: Biomass Production Lab </td>
+        <td>
+                <label for="Location"> Choose Influx Bucket:</label>
+                <select name="Location" id="Location">
+                    <optgroup label=" Experiment Location">
+                        <option value="Pilot Plant">Pilot Plant</option>
+                        <option value="Mac Greenhouse">Mac Greenhouse</option>
+                        <option value="Downtown Greenhouse">Downtown Greenhouse</option>
+                    </optgroup>
+                </select>
+                <br><br>
+                <input type="submit" value="Submit">
+            </td>
         <td>
             <form action="/reset">
                 <input type="submit" value="RESET"/>
@@ -192,7 +204,7 @@
                 </label>
             </td>
             <td>
-                <input type="text" value="5" class="input hertz"> Hz
+                Collect data every <input type="text" value="5" class="sampling rate"> seconds
             </td>
             <td>
                 <img src="photos/bme280.jpg" class="resize"/>
@@ -205,7 +217,7 @@
             <td>
                 <label class="switch">
                     <input type="checkbox" '
-                    if (sensor_1_turnedon) {
+                    if (sensor_2_turnedon) {
                     ptr += 'checked'
                     }
                     '>
@@ -225,7 +237,7 @@
             <td>
                 <label class="switch">
                     <input type="checkbox" '
-                    if (sensor_1_turnedon) {
+                    if (sensor_3_turnedon) {
                     ptr += 'checked'
                     }
                     '>
@@ -245,7 +257,7 @@
             <td>
                 <label class="switch">
                     <input type="checkbox" '
-                    if (sensor_1_turnedon) {
+                    if (sensor_4_turnedon) {
                     ptr += 'checked'
                     }
                     '>
@@ -265,7 +277,7 @@
             <td>
                 <label class="switch">
                     <input type="checkbox" '
-                    if (sensor_1_turnedon) {
+                    if (sensor_5_turnedon) {
                     ptr += 'checked'
                     }
                     '>
