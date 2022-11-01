@@ -151,16 +151,18 @@
 
 <body>
     <h1>Greenhouse Sensor Web Tools</h1>
-    <h3>Select wanted sensors for your project</h3>
+    <h3>Select the wanted sensors for your project</h3>
 <table>
     <thead>
     <tr>
-        <td>Influx Server: plnt-station.local </td>
+        <td><b>Influx Server:</b> plnt-station.local </td>
         <br><br>
-        <td>Influx Organization: Biomass Production Lab </td>
+        <br><br>
+        <td><b>Influx Organization:</b> Biomass Production Lab </td>
+        <br><br>
         <br><br>
         <td>
-                <label for="Location"> Choose Influx Bucket:</label>
+                <label for="Location"> <b>Choose Location:</b></label>
                 <select name="Location" id="Location">
                     <optgroup label=" Experiment Location">
                         <option value="Pilot Plant">Pilot Plant</option>
@@ -169,13 +171,13 @@
                     </optgroup>
                 </select>
                 <br><br>
-                <input type="submit" value="Submit">
+                <!--<input type="submit" value="Submit">-->
             </td>
-        <td>
+        <!--<td>
             <form action="/reset">
                 <input type="submit" value="RESET"/>
             </form>
-        </td>
+        </td>-->
     </tr>
     </thead>
 </table>
