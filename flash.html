@@ -1,336 +1,418 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-        html {
-            font-family: Helvetica;
-            display: inline-block;
-            margin: 0px auto;
-            text-align: center;
+        .form-control {
+            margin-top: 0.5rem;
         }
-
-        body {
-            margin-top: 50px;
-        }
-
-        h1 {
-            color: #444444;
-            margin: 50px auto 30px;
-        }
-
-        h3 {
-            color: #444444;
-            margin-bottom: 50px;
-        }
-
-        .yasmeenbtn {
-            display: block;
-            width: 80px;
-            background-color: #1abc9c;
-            border: none;
-            color: white;
-            padding: 13px 30px;
-            text-decoration: none;
-            font-size: 25px;
-            margin: 0px auto 35px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .button-on {
-            background-color: #1abc9c;
-        }
-
-        .button-on:active {
-            background-color: #16a085;
-        }
-
-        .button-off {
-            background-color: #34495e;
-        }
-
-        .button-off:active {
-            background-color: #2c3e50;
-        }
-
-        p {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 10px;
-        }
-
-        table {
-            margin: auto;
-        }
-
-        /* The switch - the box around the slider */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        /* Hide default HTML checkbox */
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        /* The slider */
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-        .yasmeentable td {
-            min-width: 150px;
-            padding-top: 20px;
-        }
-
-        .inputhertz {
-            width: 30px;
-        }
-
-        .resize {
-            width:200px; /* you can use % */
-            height: auto;
-        }
-
     </style>
-</head>
-<!--<script-->
-<!--  type="module"-->
-<!--  src="https://www.improv-wifi.com/sdk-js/launch-button.js"-->
-<!--&gt;</script>-->
 
-<!--<improv-wifi-launch-button></improv-wifi-launch-button>-->
+</head>
 
 <body>
-    <h1>Greenhouse Sensor Web Tools</h1>
-    <h3>Select the wanted sensors for your project</h3>
-<table style="width:80%">
-    <thead>
-    <tr>
-        <td><b>Influx Server:</b> plnt-station.local &nbsp;&nbsp;</td>
-        <br><br>
-        <br><br>
-        <td><b>Influx Organization:</b> Biomass Production Lab &nbsp;&nbsp;</td>
-        <br><br>
-        <br><br>
-        <td>
-                <label for="Location"> <b>Choose Location:</b></label>
-                <select name="Location" id="Location">
-                    <optgroup label=" Experiment Location">
-                        <option value="Pilot Plant">Pilot Plant</option>
-                        <option value="Mac Greenhouse">Mac Greenhouse</option>
-                        <option value="Downtown Greenhouse">Downtown Greenhouse</option>
-                    </optgroup>
-                </select>
-                <br><br>
-                <!--<input type="submit" value="Submit">-->
-            </td>
-        <!--<td>
-            <form action="/reset">
-                <input type="submit" value="RESET"/>
-            </form>
-        </td>-->
-    </tr>
-    </thead>
-</table>
-<hr>
 
-<form action="/save">
+    <div class="container-lg">
 
-    <table class="yasmeentable" style="width:100%">
-        <tbody>
-        <tr>
-            <td><b>Sensor</b></td>
-            <td><b>On/Off</b></td>
-            <td><b>Frequency</b></td>
-            <td><b>Diagram</b></td>
-        </tr>
+        <!-- ================ NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Greenhouse Sensor Suite </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#overview">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#flash">Flash</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#config">Configure</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <tr>
-            <td><b>Temperature Humidity Sensor</b><br>BME280</td>
-            <td>
-                <label class="switch">
-                    <input type="checkbox" '
-                    if (sensor_1_turnedon) {
-                     ptr += 'checked'
-                    }
-                    '>
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-                Every <input type="text" value="5" class="sampling rate"> seconds
-            </td>
-            <td>
-                <img src="photos/bme280.jpg" class="resize"/>
-            </td>
-        </tr>
+        <!-- ================ Intro/overview -->
+
+        <p class="lead" id="overview">
+            We provide blabla... write a nice 2 sentences of introduction here.
+            <br>
+            To get started,
+        <ul>
+            <li>Step 1 - Plug your NodeMCU into this computer via USB.</li>
+            <li>Step 2 - Install ("flash") our sensor software onto the NodeMCU.</li>
+            <li>Step 3 - Configure wifi, database, and which sensors you want to use below, and hit "SAVE".</li>
+            <li>Step 4 - Plug in any sensors you want to use according to the wiring diagrams below. </li>
+            <li>Step 5 - That's it. You can now disconnect the NodeMCU and move it to the greenhouse.</li>
+        </ul>
+        </p>
+
+        <!-- ================ Plugin -->
+        <hr>
+        <h2>Step 1 - Plug in NodeMCU</h2>
+        <p>
+            Make sure your NodeMCU is not connected to any devices (sensors or battery) before plugging it into this
+            computer.
+        </p>
 
 
-        <tr>
-            <td><b>Lux Sensor</b><br>VEML7700</td>
-            <td>
-                <label class="switch">
-                    <input type="checkbox" '
-                    if (sensor_2_turnedon) {
-                    ptr += 'checked'
-                    }
-                    '>
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-                Every <input type="text" value="5" class="input hertz"> seconds
-            </td>
-            <td>
-                <img src="photos/veml.jpg" class="resize"/>
-            </td>
-        </tr>
-        <tr>
-            <td><b>CO2 Sensor</b><br>CSS811</td>
-            <td>
-                <label class="switch">
-                    <input type="checkbox" '
-                    if (sensor_3_turnedon) {
-                    ptr += 'checked'
-                    }
-                    '>
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-               Every <input type="text" value="5" class="input hertz"> seconds
-            </td>
-            <td>
-                <img src="photos/co2.jpg" class="resize"/>
-            </td>
-        </tr>
-        <!--<tr>
-            <td><b>Soil Sensor</b><br>Adafruit XXX</td>
-            <td>
-                <label class="switch">
-                    <input type="checkbox" '
-                    if (sensor_4_turnedon) {
-                    ptr += 'checked'
-                    }
-                    '>
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-                <input type="text" value="5" class="input hertz"> Hz
-            </td>
-            <td>
-                <img src="wiring_diagram_example.jpeg" class="resize"/>
-            </td>
-        </tr>
-        <tr>
-            <td><b>Camera Sensor</b><br>ESPcam</td>
-            <td>
-                <label class="switch">
-                    <input type="checkbox" '
-                    if (sensor_5_turnedon) {
-                    ptr += 'checked'
-                    }
-                    '>
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-                <input type="text" value="5" class="input hertz"> Hz
-            </td>
-            <td>
-                <img src="wiring_diagram_example.jpeg" class="resize"/>
-            </td>
-        </tr>-->
-        </tbody>
-    </table>
+        <!-- ================ Flash -->
+        <hr>
+        <h2 id="flash">Step 2 - Flash our software onto the NodeMCU</h2>
 
-    <input type="submit" value="SAVE"/>
-</form>
+        <p>
+            NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor, Arduino IDE, etc.).<br>
 
+            Click the FLASH button and follow the on-screen instructions.
+        </p>
+        <div id="main" style="display: none;" class="text-center">
+            <script type="module" src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
+            </script>
+            <!-- <esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button> -->
+            <esp-web-install-button manifest="webflash/manifest.json">
+                <button slot="activate" class="btn btn-primary">FLASH</button>
+                <span slot="unsupported">Your browser does not support the Web Serial API. Try Chrome, Opera or
+                    Edge</span>
+                <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP! Please contact us: TODO
+                    INSERT-EMAIL-HERE</span>
+            </esp-web-install-button>
+            <br>
+        </div>
+        <div id="notSupported" style="display: none;">
+            Your browser does not support the Web Serial API. Try Chrome, Opera or Edge
+        </div>
 
-
-
-    <div id="main" style="display: none;">
-
-        <br>
-        <script
-            type="module"
-            src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
+        <script>
+            if (navigator.serial) {
+                document.getElementById("notSupported").style.display = ' none';
+                document.getElementById("main").style.display = 'block';
+            } else {
+                document.getElementById("notSupported").style.display = 'block';
+                document.getElementById("main").style.display = 'none';
+            } 
         </script>
-        <esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button>
         <br>
-        <span>NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor)</span>
+
+        <!-- ================ Config -->
+        <hr>
+        <h2 id="config">Step 3 - Configure your NodeMCU</h2>
+
+        NOTE: Click the "SAVE & UPLOAD" button <strong>when you're done</strong> entering all the settings.
+
+        <div class="row">
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary" onclick="saveconfig();" style="margin-top: 1em">SAVE &
+                    UPLOAD</button>
+            </div>
+        </div>
+
+        <h4>General Settings</h4>
+
+        <div class="row">
+            <label for="inputNodename" class="col-sm-4 offset-sm-2 col-form-label">Name of your NodeMCU (should be
+                unique for each NodeMCU)</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputNodename" type="text" placeholder="MyFirstNodeMCU"
+                    aria-label="nodemcu name">
+            </div>
+        </div>
+        <div class="row">
+            <label for="inputWifissid" class="col-sm-4 offset-sm-2 col-form-label">Wifi network name</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputWifissid" type="text" placeholder="Greenhouse Wifi"
+                    aria-label="wifi name">
+            </div>
+        </div>
+        <div class="row">
+            <label for="inputWifipass" class="col-sm-4  offset-sm-2 col-form-label">Wifi password</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputWifipass" type="text" placeholder="Ladeeda-Secret-Password"
+                    aria-label="wifi pass">
+            </div>
+        </div>
+
+        <h4>Database Settings</h4>
+
+        You should get these from whoever is running the database.
+
+        <div class="row">
+            <label for="inputInfluxurl" class="col-sm-4 offset-sm-2 col-form-label">Influx Server Address and
+                Port</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputInfluxurl" type="text" placeholder="1.2.3.4:8080"
+                    aria-label="influx url">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="inputInfluxtoken" class="col-sm-4 offset-sm-2 col-form-label">Influx Token</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputInfluxtoken" type="text" placeholder="tdCGZB-WwgLnc..."
+                    aria-label="influx token">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="inputInfluxorg" class="col-sm-4 offset-sm-2 col-form-label">Influx Organization</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputInfluxorg" type="text" placeholder="CoolPlantPeople"
+                    aria-label="influx org">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="inputInfluxbucket" class="col-sm-4 offset-sm-2 col-form-label">Influx Database
+                ("Bucket")</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="inputInfluxbucket" type="text" placeholder="MyGreenhouse"
+                    aria-label="influx bucket">
+            </div>
+        </div>
+
+        <h4>Sensors</h4>
+
+        <div class="row">
+            <div class="col-4"><strong>Sensor Name</strong></div>
+            <div class="col-2"><strong>Use Sensor?</strong></div>
+            <div class="col-3"><strong>Recording Frequency</strong></div>
+            <div class="col-3"><strong>Wiring Diagram</strong></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-4">Temperature & Humidity Sensor<br>(BME280)</div>
+            <div class="col-2 mx-auto">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="inputUseenv">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3 row">
+
+                    <select class="form-select" id="inputFreqenv" aria-label="env sensor recording frequency">
+                        <option value="0.000556">once every 30 min</option>
+                        <option value="0.01667">once every 1 min</option>
+                        <option value="0.1">0.1 Hz / once every 10 s</option>
+                        <option value="0.5">0.5 Hz / once every 2 s</option>
+                        <option value="1" selected>1 Hz</option>
+                        <option value="5">5 Hz</option>
+                        <option value="10">10 Hz</option>
+                        <option value="50">50 Hz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="photos/bme280.jpg" data-bs-toggle="modal" data-bs-target="#modalEnvsensor"
+                    style="width: 100%;cursor:zoom-in" />
+                <!-- Modal -->
+                <div class="modal fade" id="modalEnvsensor" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="photos/bme280.jpg" style="width: 100%;cursor:zoom-out"
+                                                onclick="bootstrap.Modal.getInstance(document.getElementById('modalEnvsensor')).hide()" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-4">Lux Sensor<br>(VEML7700)</div>
+            <div class="col-2 mx-auto">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="inputUselux">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3 row">
+
+                    <select class="form-select" id="inputFreqlux" aria-label="lux sensor recording frequency">
+                        <option value="0.000556">once every 30 min</option>
+                        <option value="0.01667">once every 1 min</option>
+                        <option value="0.1">0.1 Hz / once every 10 s</option>
+                        <option value="0.5">0.5 Hz / once every 2 s</option>
+                        <option value="1" selected>1 Hz</option>
+                        <option value="5">5 Hz</option>
+                        <option value="10">10 Hz</option>
+                        <option value="50">50 Hz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="photos/veml.jpg" data-bs-toggle="modal" data-bs-target="#modalLuxsensor"
+                    style="width: 100%;cursor:zoom-in" />
+                <!-- Modal -->
+                <div class="modal fade" id="modalLuxsensor" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="photos/veml.jpg" style="width: 100%;cursor:zoom-out"
+                                                onclick="bootstrap.Modal.getInstance(document.getElementById('modalLuxsensor')).hide()" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-4">CO2 Sensor<br>(CSS811)</div>
+            <div class="col-2 mx-auto">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="inputUseco2">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3 row">
+
+                    <select class="form-select" id="inputFreqco2" aria-label="co2 sensor recording frequency">
+                        <option value="0.000556">once every 30 min</option>
+                        <option value="0.01667">once every 1 min</option>
+                        <option value="0.1">0.1 Hz / once every 10 s</option>
+                        <option value="0.5">0.5 Hz / once every 2 s</option>
+                        <option value="1" selected>1 Hz</option>
+                        <option value="5">5 Hz</option>
+                        <option value="10">10 Hz</option>
+                        <option value="50">50 Hz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="photos/co2.jpg" data-bs-toggle="modal" data-bs-target="#modalCo2sensor"
+                    style="width: 100%;cursor:zoom-in" />
+                <!-- Modal -->
+                <div class="modal fade" id="modalCo2sensor" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="photos/co2.jpg" style="width: 100%;cursor:zoom-out"
+                                                onclick="bootstrap.Modal.getInstance(document.getElementById('modalCo2sensor')).hide()" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary" onclick="saveconfig();" style="margin-bottom: 1em">SAVE &
+                    UPLOAD</button>
+            </div>
+        </div>
+
+
+        <!-- ================ Sensor setup -->
+
+        <hr>
+        <h2 id="sensors">Step 4 - Plug in Sensors</h2>
+        <p>
+            At this point, if you've saved your settings to the NodeMCU and everything went through without any errors,
+            you can unplug the NodeMCU from your computer, plug in any sensors,...
+        </p>
+
+        <hr>
+        <h2 id="deploy">Step 5 - Deploy</h2>
+        <p>
+            ...and bring it to the growhouse of your choice. The NodeMCU can be powered through USB
+            (including from a computer, external power adapter, or battery) and by connecting the GND,
+            VIN pins to ground and a 5V or 12V power supply respectively.
+        </p>
+        <hr>
+        <h2 id="credits">Credits and license</h2>
+        <p>
+            TODO: add our names here
+        </p>
     </div>
-    <div id="notSupported" style="display: none;">
-        Your browser does not support the Web Serial API. Try Chrome, Opera or Edge
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
 
 
     <script>
-        if(navigator.serial){
-            document.getElementById("notSupported").style.display = 'none';
-            document.getElementById("main").style.display = 'block';
-        } else {
-            document.getElementById("notSupported").style.display = 'block';
-            document.getElementById("main").style.display = 'none';
+        function makeJson() {
+            const node_name = document.getElementById('inputNodename').value;
+
+            const inputWifissid = document.getElementById('inputWifissid').value;
+            const inputWifipass = document.getElementById('inputWifipass').value;
+
+            const inputInfluxurl = document.getElementById('inputInfluxurl').value;
+            const inputInfluxtoken = document.getElementById('inputInfluxtoken').value;
+            const inputInfluxorg = document.getElementById('inputInfluxorg').value;
+            const inputInfluxbucket = document.getElementById('inputInfluxbucket').value;
+
+            const inputUseenv = document.getElementById('inputUseenv').checked ? 1 : 0;
+            const inputFreqenv = Math.round(1000/document.getElementById('inputFreqenv').value);
+
+            const inputUselux = document.getElementById('inputUselux').checked ? 1 : 0;
+            const inputFreqlux = Math.round(1000/document.getElementById('inputFreqlux').value);
+
+            const inputUseco2 = document.getElementById('inputUseco2').checked ? 1 : 0;
+            const inputFreqco2 = Math.round(1000/document.getElementById('inputFreqco2').value);
+
+            const output = `{"NODE_NAME":${node_name},"WIFI_SSID":${inputWifissid},"WIFI_PASSWORD":${inputWifipass},"INFLUX_URL":${inputInfluxurl},"INFLUX_TOKEN":${inputInfluxtoken},"INFLUX_ORG":${inputInfluxorg},"INFLUX_BUCKET":${inputInfluxbucket},"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv},"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2},"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+
+            //TODO: add a warning `alert("...")` if any one of these is empty
+            console.log(output);
+            return output;
+        }
+
+        async function saveconfig() {
+            const port = await navigator.serial.requestPort();
+            // - Wait for the port to open. baudrate copied from C++ code
+            await port.open({ baudrate: 115200 });
+            const textEncoder = new TextEncoderStream();
+            const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+            const writer = textEncoder.writable.getWriter();
+            const jsonstring = makeJson();
+            await writer.write(jsonstring);
+            await port.close();
+
+            alert("Writing done");
+            //TODO: add literally any kind of error handling here
         }
     </script>
-
 </body>
 
 </html>
