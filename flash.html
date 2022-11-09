@@ -383,17 +383,24 @@
             const inputInfluxbucket = document.getElementById('inputInfluxbucket').value;
 
             const inputUseenv = document.getElementById('inputUseenv').checked ? 1 : 0;
-            const inputFreqenv = Math.round(1000/document.getElementById('inputFreqenv').value);
+            const inputFreqenv = Math.round(1000 / document.getElementById('inputFreqenv').value);
 
             const inputUselux = document.getElementById('inputUselux').checked ? 1 : 0;
-            const inputFreqlux = Math.round(1000/document.getElementById('inputFreqlux').value);
+            const inputFreqlux = Math.round(1000 / document.getElementById('inputFreqlux').value);
 
             const inputUseco2 = document.getElementById('inputUseco2').checked ? 1 : 0;
-            const inputFreqco2 = Math.round(1000/document.getElementById('inputFreqco2').value);
+            const inputFreqco2 = Math.round(1000 / document.getElementById('inputFreqco2').value);
 
-            const output = `{"NODE_NAME":${node_name},"WIFI_SSID":${inputWifissid},"WIFI_PASSWORD":${inputWifipass},"INFLUX_URL":${inputInfluxurl},"INFLUX_TOKEN":${inputInfluxtoken},"INFLUX_ORG":${inputInfluxorg},"INFLUX_BUCKET":${inputInfluxbucket},"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv},"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2},"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+            const output = `{"NODE_NAME":"${node_name}","WIFI_SSID":"${inputWifissid}",` +
+                `"WIFI_PASSWORD":"${inputWifipass}","INFLUX_URL":"${inputInfluxurl}",` +
+                `"INFLUX_TOKEN":"${inputInfluxtoken}","INFLUX_ORG":"${inputInfluxorg}",` +
+                `"INFLUX_BUCKET":"${inputInfluxbucket}","USE_ENV_SENSOR":${inputUseenv},` +
+                `"FREQ_ENV_SENSOR":${inputFreqenv},"USE_AIR_SENSOR":${inputUseco2},` +
+                `"FREQ_AIR_SENSOR":${inputFreqco2},"USE_LIGHT_SENSOR":${inputUselux},` +
+                `"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
 
-            //TODO: add a warning `alert("...")` if any one of these is empty
+            //TODO: add a warning `alert("...")` if any one of these is empty, or at least if the name and wifi is empty
+            //TODO: also add a warning if not a single sensor is used
             console.log(output);
             return output;
         }
