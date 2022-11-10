@@ -177,6 +177,44 @@
                     aria-label="influx bucket">
             </div>
         </div>
+        <div class="row">
+            <label for="inputTimezone" class="col-sm-4 offset-sm-2 col-form-label">Influx Database
+                Timezone</label>
+            <div class="col-sm-4">
+                <select class="form-select" id="inputTimezone" aria-label="timezone for database">
+                    <option value="AEST-10AEDT-11,M10.5.0/02:00:00,M4.1.0/03:00:00">Australian Eastern Standard Time</option>
+                    <option value="AWST-8AWDT-9,M10.5.0,M3.5.0/03:00:00">Australian Western Standard Time</option>
+                    <option value="AEST-10">Australian Eastern Standard Time/Brisbane</option>
+                    <option value="ACST-9:30ACDT-10:30,M10.5.0/02:00:00,M4.1.0/03:00:00">Australian Central Daylight Saving Time</option>
+                    <option value="ACST-9:30">Australian Central Standard Time</option>
+
+                    <option value="CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00">Central European Standard Time</option>
+                    <option value="EET-2EEST-3,M3.5.0/03:00:00,M10.5.0/04:00:00">Eastern European Standard Time</option>
+                    <option value="WET-0WEST-1,M3.5.0/01:00:00,M10.5.0/02:00:00">Western European Standard Time</option>
+                    <option value="GMT+0BST-1,M3.5.0/01:00:00,M10.5.0/02:00:00">Greenwich Mean Time</option>
+                    <option value="GMT+0IST-1,M3.5.0/01:00:00,M10.5.0/02:00:00">Greenwich Mean Time with Daylight Savings</option>
+                    <option value="MSK-3MSD,M3.5.0/2,M10.5.0/3">Moscow Standard Time</option>
+                    <option value="NZST-12NZDT-13,M10.1.0/02:00:00,M3.3.0/03:00:00">New Zealand Standard Time</option>
+                    <option value="HAW10">Hawaii Time</option>
+                    <option value="AKST9AKDT,M3.2.0,M11.1.0">Alaska Time</option>
+                    <option value="PST8PDT,M3.2.0,M11.1.0">Pacific Time</option>
+                    <option value="MST7MDT,M3.2.0,M11.1.0">Mountain Time</option>
+                    <option value="CST6CDT,M3.2.0,M11.1.0">Central Daylight Time</option>
+                    <option value="EST5EDT,M3.2.0,M11.1.0">Eastern Time</option>
+                    <option value="AST4ADT">Atlantic Time</option>
+                    <option value="AST4ADT,M4.1.0/00:01:00,M10.5.0/00:01:00">Atlantic Time (New Brunswick)</option>
+                    <option value="NST+3:30NDT+2:30,M3.2.0/00:01:00,M11.1.0/00:01:00">Newfoundland Time</option>
+                    <option value="WIB-7">Western Indonesia Time</option>
+                    <option value="SGT-8">Singapore Standard Time</option>
+                    <option value="HKT-8">Hong Kong Standard Time</option>
+                    <option value="ULAT-8ULAST,M3.5.0/2,M9.5.0/2">Ulaanbaatar Standard Time</option>
+                    <option value="BRST+3BRDT+2,M10.3.0,M2.3.0">Brasilia Standard Time</option>
+                    <option value="UTC+5">Colombia Standard Time</option>
+                    <option value="UTC+3">Argentina Standard Time</option>
+                    <option value="CST+6">Central Standard Time</option>
+                </select>
+            </div>
+        </div>
 
         <h4>Sensors</h4>
 
@@ -381,6 +419,7 @@
             const inputInfluxtoken = document.getElementById('inputInfluxtoken').value;
             const inputInfluxorg = document.getElementById('inputInfluxorg').value;
             const inputInfluxbucket = document.getElementById('inputInfluxbucket').value;
+            const inputTimezone = document.getElementById('inputTimezone').value;
 
             const inputUseenv = document.getElementById('inputUseenv').checked ? 1 : 0;
             const inputFreqenv = Math.round(1000 / document.getElementById('inputFreqenv').value);
@@ -394,10 +433,11 @@
             const output = `{"NODE_NAME":"${node_name}","WIFI_SSID":"${inputWifissid}",` +
                 `"WIFI_PASSWORD":"${inputWifipass}","INFLUX_URL":"${inputInfluxurl}",` +
                 `"INFLUX_TOKEN":"${inputInfluxtoken}","INFLUX_ORG":"${inputInfluxorg}",` +
-                `"INFLUX_BUCKET":"${inputInfluxbucket}","USE_ENV_SENSOR":${inputUseenv},` +
-                `"FREQ_ENV_SENSOR":${inputFreqenv},"USE_AIR_SENSOR":${inputUseco2},` +
-                `"FREQ_AIR_SENSOR":${inputFreqco2},"USE_LIGHT_SENSOR":${inputUselux},` +
-                `"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+                `"INFLUX_BUCKET":"${inputInfluxbucket}","TZ_INFO":"${inputTimezone}",` +
+                `"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv}` +
+                `"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2}` +
+                `"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+
 
             //TODO: add a warning `alert("...")` if any one of these is empty, or at least if the name and wifi is empty
             //TODO: also add a warning if not a single sensor is used
