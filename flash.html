@@ -446,6 +446,12 @@
         }
 
         async function saveconfig() {
+            if (document.getElementById('inputWifissid').value == ''){
+                alert("Please fill in WiFi");
+            }
+            if (document.getElementById('inputUseenv').checked && document.getElementById('inputUselux').checked && document.getElementById('inputUseco2').checked == 0){
+                alert("You forgot to select sensors");
+            }
             const port = await navigator.serial.requestPort();
             // - Wait for the port to open. baudrate copied from C++ code
             await port.open({ baudrate: 115200 });
