@@ -411,7 +411,7 @@
             TODO: add our names here
         </p>
         <p>
-            Version: 1.05
+            Version: 1.06
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -488,11 +488,15 @@
             }
             console.log("Requesting serial port");
 
-            if (!serial.isOpen()) {
-                await serial.connectAndOpen(serialOptions = { baudRate: 115200 });
-            } else {
-                console.log("The serial connection appears already open");
-            }
+
+            await serial.connect();
+            // await serial.connectAndOpen(serialOptions = { baudRate: 115200 });
+            console.log("=== Port is open.")
+            await serial.open({ baudRate: 115200 });
+            console.log("=== Port is ready.")
+            // } else {
+            //     console.log("The serial connection appears already open");
+            // }
 
 
             const jsonstring = makeJson();
