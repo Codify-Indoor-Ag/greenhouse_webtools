@@ -485,8 +485,10 @@
             console.log("Sending the following JSON:\n");
             console.log(jsonstring);
             await serial.writeLine(jsonstring);
+            
+            console.log("Done, sleeping for 1s, then wrapping up.")
+            await new Promise(r => setTimeout(r, 1000));
 
-            console.log("Done. Wrapping up.")
             await serial.close();
 
             console.log("Closed writer and port. Should be good to go.")
