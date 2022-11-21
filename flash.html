@@ -483,20 +483,26 @@
             console.log("Got a port, opening...");
             await port.open({ baudRate: 115200 });
             console.log("Port is ready. Preparing to send...");
-            const textEncoder = new TextEncoderStream();
-            const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-            const writer = textEncoder.writable.getWriter();
+            // const textEncoder = new TextEncoderStream();
+            // const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+            // const writer = textEncoder.writable.getWriter();
             const jsonstring = makeJson();
             
+            const encoder = new TextEncoder();
+            const writer = port.writable.getWriter();
+            
+
             console.log("Sending the following JSON:\n");
             console.log(jsonstring);
-            await writer.write(jsonstring);
+            // await writer.write(jsonstring);
+            await writer.write(encoder.encode(jsonstring));
+            writer.releaseLock();
 
             console.log("Done. Wrapping up.")
             // when we're done, stop the string-to-serial writer
             writer.close();
             // and wait for it to close
-            await writableStreamClosed;
+            // await writableStreamClosed;
 
             // now close the port
             await port.close();
