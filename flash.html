@@ -411,7 +411,7 @@
             TODO: add our names here
         </p>
         <p>
-            Version: 1.06
+            Version: 1.07
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -504,13 +504,13 @@
 
             console.log("Sending the following JSON:\n");
             console.log(jsonstring);
-            serial.writeLine(jsonstring);
+            await serial.writeLine(jsonstring);
             // await writer.write(jsonstring);
             // await writer.write(encoder.encode(jsonstring));
             // writer.releaseLock();
 
             console.log("Done. Wrapping up.")
-            serial.close();
+            await serial.close();
             // // when we're done, stop the string-to-serial writer
             // writer.close();
             // // and wait for it to close
