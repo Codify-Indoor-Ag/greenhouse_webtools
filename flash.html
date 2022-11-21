@@ -411,13 +411,14 @@
             TODO: add our names here
         </p>
         <p>
-            Version: 1.03
+            Version: 1.04
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-
+    <!-- using this great webserial lib -->
+    <script src="https://cdn.jsdelivr.net/gh/makeabilitylab/p5js/_libraries/serial.js"></script>
 
 
     <script>
@@ -468,6 +469,14 @@
             return output;
         }
 
+        function onSerialErrorOccurred(eventSender, error) {
+      console.log("onSerialErrorOccurred", error);
+  }
+
+  function onSerialDataReceived(eventSender, newData) {
+      console.log("onSerialDataReceived", newData);
+  }
+
         async function saveconfig() {
             if (document.getElementById('inputWifissid').value == '') {
                 alert("Please fill in WiFi credentials!");
@@ -478,34 +487,35 @@
                 return;
             }
             console.log("Requesting serial port");
-            const port = await navigator.serial.requestPort();
-            // - Wait for the port to open. baudrate copied from C++ code
-            console.log("Got a port, opening...");
-            await port.open({ baudRate: 115200 });
-            console.log("Port is ready. Preparing to send...");
-            // const textEncoder = new TextEncoderStream();
-            // const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-            // const writer = textEncoder.writable.getWriter();
+
+            if (!serial.isOpen()) {
+            await serial.connectAndOpen({ baudRate: 115200 });
+            } else {
+            console.log("The serial connection appears already open");
+            }
+
+
             const jsonstring = makeJson();
-            
-            const encoder = new TextEncoder();
-            const writer = port.writable.getWriter();
             
 
             console.log("Sending the following JSON:\n");
             console.log(jsonstring);
+            serial.writeLine(jsonstring);
             // await writer.write(jsonstring);
-            await writer.write(encoder.encode(jsonstring));
-            writer.releaseLock();
+            // await writer.write(encoder.encode(jsonstring));
+            // writer.releaseLock();
 
             console.log("Done. Wrapping up.")
-            // when we're done, stop the string-to-serial writer
-            writer.close();
-            // and wait for it to close
-            // await writableStreamClosed;
+            serial.close();
+            // // when we're done, stop the string-to-serial writer
+            // writer.close();
+            // // and wait for it to close
+            // // await writableStreamClosed;
 
-            // now close the port
-            await port.close();
+            // // now close the port
+            // await port.close();
+
+
             console.log("Closed writer and port. Should be good to go.")
             alert("Successfully wrote settings to Node. You should be good to go.");
             //TODO: add literally any kind of error handling here
@@ -553,6 +563,10 @@
 
         // run this when the page is done loading
         restoreFormFields();
+        const serial = new Serial();
+
+        serial.on(SerialEvents.DATA_RECEIVED, onSerialDataReceived);
+        serial.on(SerialEvents.ERROR_OCCURRED, onSerialErrorOccurred);
 
     </script>
 </body>
