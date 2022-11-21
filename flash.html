@@ -411,7 +411,7 @@
             TODO: add our names here
         </p>
         <p>
-            Version: 1.08
+            Version: 1.09
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -478,7 +478,7 @@
         }
 
         // Called by Serial when a serial connection opens and ready to write
-        function onSerialConnectionOpened(eventSender) {
+        async function onSerialConnectionOpened(eventSender) {
             console.log("=== Port is ready.")
             const jsonstring = makeJson();
 
