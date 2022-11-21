@@ -441,28 +441,41 @@
 
             //TODO: add a warning `alert("...")` if any one of these is empty, or at least if the name and wifi is empty
             //TODO: also add a warning if not a single sensor is used
+            console.log("Sending the following JSON:\n");
             console.log(output);
             return output;
         }
 
         async function saveconfig() {
             if (document.getElementById('inputWifissid').value == ''){
-                alert("Please fill in WiFi");
+                alert("Please fill in WiFi credentials!");
             }
-            if (document.getElementById('inputUseenv').checked && document.getElementById('inputUselux').checked && document.getElementById('inputUseco2').checked == 0){
-                alert("You forgot to select sensors");
+            if (document.getElementById('inputUseenv').checked == 0 && document.getElementById('inputUselux').checked == 0 && document.getElementById('inputUseco2').checked == 0){
+                alert("You forgot to select sensors. Toggle the ones on that you plan on using.");
             }
+            console.log("Requesting serial port");
             const port = await navigator.serial.requestPort();
             // - Wait for the port to open. baudrate copied from C++ code
+            console.log("Got a port, opening...");
             await port.open({ baudRate: 115200 });
+            console.log("Port is ready. Preparing to send...");
             const textEncoder = new TextEncoderStream();
             const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
             const writer = textEncoder.writable.getWriter();
             const jsonstring = makeJson();
+            console.log("Sending JSON to serial...")
             await writer.write(jsonstring);
-            await port.close();
+            
+            console.log("Done. Wrapping up.")
+            // when we're done, stop the string-to-serial writer
+            writer.close();
+            // and wait for it to close
+            await writableStreamClosed;
 
-            alert("Writing done");
+            // now close the port
+            await port.close();
+            console.log("Closed writer and port. Should be good to go.")
+            alert("Successfully wrote settings to Node. You should be good to go.");
             //TODO: add literally any kind of error handling here
         }
     </script>
