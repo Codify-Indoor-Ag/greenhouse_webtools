@@ -411,7 +411,7 @@
             TODO: add our names here
         </p>
         <p>
-            Version: 1.12
+            Version: 1.13
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -443,13 +443,16 @@
             const inputUseco2 = document.getElementById('inputUseco2').checked ? 1 : 0;
             const inputFreqco2 = Math.round(1000 / document.getElementById('inputFreqco2').value);
 
-            const output = `{"NODE_NAME":"${node_name}","WIFI_SSID":"${inputWifissid}",` +
-                `"WIFI_PASSWORD":"${inputWifipass}","INFLUX_URL":"${inputInfluxurl}",` +
-                `"INFLUX_TOKEN":"${inputInfluxtoken}","INFLUX_ORG":"${inputInfluxorg}",` +
-                `"INFLUX_BUCKET":"${inputInfluxbucket}","TZ_INFO":"${inputTimezone}",` +
-                `"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv},` +
-                `"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2},` +
-                `"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+            // const output = `{"NODE_NAME":"${node_name}","WIFI_SSID":"${inputWifissid}",` +
+            //     `"WIFI_PASSWORD":"${inputWifipass}","INFLUX_URL":"${inputInfluxurl}",` +
+            //     `"INFLUX_TOKEN":"${inputInfluxtoken}","INFLUX_ORG":"${inputInfluxorg}",` +
+            //     `"INFLUX_BUCKET":"${inputInfluxbucket}","TZ_INFO":"${inputTimezone}",` +
+            //     `"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv},` +
+            //     `"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2},` +
+            //     `"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
+
+
+            const output = `{"NODE_NAME":"${node_name}"}`;
 
 
             localStorage.setItem('inputNodename', document.getElementById('inputNodename').value);
