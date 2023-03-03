@@ -444,9 +444,9 @@
             const inputFreqco2 = Math.round(1000 / document.getElementById('inputFreqco2').value);
 
             const output = `{"NODE_NAME":"${node_name}","WIFI_SSID":"${inputWifissid}",` +
-                `"WIFI_PASSWORD":"${inputWifipass}","INFLUX_URL":"${inputInfluxurl}",` +
-                `"INFLUX_TOKEN":"${inputInfluxtoken}","INFLUX_ORG":"${inputInfluxorg}",` +
-                `"INFLUX_BUCKET":"${inputInfluxbucket}","TZ_INFO":"${inputTimezone}",` +
+                `"WIFI_PASSWORD":"${inputWifipass}","INFLUXDB_URL":"${inputInfluxurl}",` +
+                `"INFLUXDB_TOKEN":"${inputInfluxtoken}","INFLUXDB_ORG":"${inputInfluxorg}",` +
+                `"INFLUXDB_BUCKET":"${inputInfluxbucket}","TZ_INFO":"${inputTimezone}",` +
                 `"USE_ENV_SENSOR":${inputUseenv},"FREQ_ENV_SENSOR":${inputFreqenv},` +
                 `"USE_AIR_SENSOR":${inputUseco2},"FREQ_AIR_SENSOR":${inputFreqco2},` +
                 `"USE_LIGHT_SENSOR":${inputUselux},"FREQ_LIGHT_SENSOR":${inputFreqlux}}`;
